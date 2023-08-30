@@ -1,3 +1,16 @@
+/* Estilos para el fondo de imagen */
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('fondo.jpg'); /* Reemplaza 'tu-imagen.jpg' con la URL o la ruta de tu imagen */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Esto mantiene el fondo fijo mientras se desplaza la página */
+    background-position: center;
+    font-family: Arial, sans-serif;
+    color: #fff; /* Color de texto para que sea legible en la imagen de fondo */
+}
+
 /* Estilos personalizados para las tarjetas */
 .pokemon-card {
     border: 1px solid #ccc;
@@ -50,29 +63,48 @@
     }
 }
 
+/* Estilos para la barra de navegación */
+.navbar {
+    background-color: transparent; /* Fondo transparente */
+    border: none; /* Sin borde */
+}
+
 /* Estilos para la barra de búsqueda */
 .search-input {
-    width: 250px; /* Ancho de la barra de búsqueda */
+    width: 100%; /* Ancho completo de la barra de búsqueda */
     border-radius: 25px; /* Borde redondeado */
     padding: 8px 16px; /* Espaciado interno */
     border: none; /* Sin borde */
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1); /* Sombra */
-  }
-  
-  /* Estilos para el botón de búsqueda */
-  #searchButton {
+}
+
+/* Estilos para el botón de búsqueda */
+#searchButton {
     border-radius: 25px; /* Borde redondeado */
     margin-left: 10px; /* Espaciado izquierdo */
-  }
-  
-  /* Estilos para el enlace de la barra de navegación */
-  .navbar-brand {
+}
+
+/* Estilos para el enlace de la barra de navegación */
+.navbar-brand {
     font-size: 24px; /* Tamaño de fuente */
     font-weight: bold; /* Negrita */
-  }
-  
-  /* Estilos para el botón de navegación (hamburguesa) */
-  .navbar-toggler-icon {
-    border: 2px solid #007BFF; /* Borde */
-  }
-  
+}
+
+/* Estilo para el logotipo */
+#logo {
+    width: 80px; /* Ancho deseado */
+    height: auto; /* La altura se ajusta automáticamente para mantener la proporción */
+}
+
+/* Estilo para la barra de navegación */
+.navbar {
+    background-color: transparent; /* Fondo transparente */
+}
+
+/* Estilo para el enlace del logotipo */
+.navbar-brand {
+    font-size: 24px; /* Tamaño de fuente */
+    font-weight: bold; /* Negrita */
+    color: #fff; /* Color del texto */
+}
+
