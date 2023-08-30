@@ -4,21 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>pokemon</title>
+    <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
 </head>
 <body>
-    <div class="navbar">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="app.js">Pokedex</a>
-        <form class="d-flex" role="search">
-          <input id="searchBar" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Pokedex</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto"> <!-- mx-auto centra los elementos -->
+          <li class="nav-item">
+            <form class="d-flex">
+              <input id="searchBar" class="form-control me-2 search-input" type="search" placeholder="Search" aria-label="Search">
+              <button id="searchButton" class="btn btn-outline-success" type="button">Search</button>
+            </form>
+          </li>
+        </ul>
       </div>
-    </div>
+    </nav>
+  </div>
 
-    <div id="contenedor-pokemon"></div>
+<div id="contenedor-pokemon" class="container"></div>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">

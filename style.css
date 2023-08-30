@@ -1,0 +1,78 @@
+/* Estilos personalizados para las tarjetas */
+.pokemon-card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 15px;
+    width: 15rem;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+    background-color: #f8f8f8;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+}
+
+.pokemon-card:hover {
+    transform: scale(1.1); /* Aumenta el valor de escala para un efecto de movimiento más pronunciado */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+    max-height: 150px;
+    margin: 0 auto;
+    display: block;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+}
+
+.pokemon-card:hover .card-img-top {
+    transform: rotateY(180deg);
+}
+
+.card-title {
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Centrar las tarjetas en el contenedor */
+#contenedor-pokemon {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Estilos responsivos */
+@media (max-width: 767px) {
+    .pokemon-card {
+        width: 100%; /* Tarjetas ocupan todo el ancho en pantallas pequeñas */
+    }
+}
+
+/* Estilos para la barra de búsqueda */
+.search-input {
+    width: 250px; /* Ancho de la barra de búsqueda */
+    border-radius: 25px; /* Borde redondeado */
+    padding: 8px 16px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+  }
+  
+  /* Estilos para el botón de búsqueda */
+  #searchButton {
+    border-radius: 25px; /* Borde redondeado */
+    margin-left: 10px; /* Espaciado izquierdo */
+  }
+  
+  /* Estilos para el enlace de la barra de navegación */
+  .navbar-brand {
+    font-size: 24px; /* Tamaño de fuente */
+    font-weight: bold; /* Negrita */
+  }
+  
+  /* Estilos para el botón de navegación (hamburguesa) */
+  .navbar-toggler-icon {
+    border: 2px solid #007BFF; /* Borde */
+  }
+  

@@ -59,17 +59,17 @@ const getColorType = function (type) {
   return typeColor[type];
 }
 
+// Define una función para crear la tarjeta de Pokémon
 const crearTarjetaPokemon = function (pokemon) {
-
   const tarjeta = document.createElement('div');
-  tarjeta.classList.add('card','col-3','m-2','row','p-2','shadow',);
+  tarjeta.classList.add('card', 'col-3', 'm-2', 'row', 'p-2', 'shadow');
 
   const nombre = document.createElement('h2');
   nombre.classList.add('card-title');
   nombre.textContent = pokemon.name;
 
   const image = document.createElement('img');
-  image.classList.add('card-img-top','img-fluid');
+  image.classList.add('card-img-top', 'img-fluid');
   image.src = pokemon.image;
 
   tarjeta.appendChild(image);
@@ -82,26 +82,86 @@ const crearTarjetaPokemon = function (pokemon) {
   });
 
   contenedorPokemon.appendChild(tarjeta);
-}
+};
 
-const searchBar = document.getElementById('searchBar');
+// Define una función para mostrar los resultados de búsqueda
+const mostrarResultados = function (resultados) {
+  contenedorPokemon.innerHTML = ''; // Limpia el contenedor
 
-searchBar.addEventListener('input', () => {
-  const searchTerm = searchBar.value.toLowerCase();
-  const filteredPokemons = pokemonData.filter(pokemon => pokemon.name.toLowerCase().includes(searchTerm));
-  
-  updatePokedex(filteredPokemons);
+  if (resultados.length === 0) {
+    const mensaje = document.createElement('p');
+    mensaje.textContent = 'No se encontraron resultados.';
+    contenedorPokemon.appendChild(mensaje);
+  } else {
+    resultados.forEach((pokemon) => {
+      crearTarjetaPokemon(pokemon);
+    });
+  }
+};
+
+// Función para buscar Pokémon
+const buscarPokemon = function (busqueda) {
+  // Si la cadena de búsqueda está vacía, mostrar todos los Pokémon
+  if (busqueda === '') {
+    mostrarResultados(pokemonData);
+  } else {
+    // Filtra los Pokémon según el término de búsqueda (nombre o tipo)
+    const resultados = pokemonData.filter((pokemon) => {
+      const nombre = pokemon.name.toLowerCase();
+      const tipo = pokemon.type.toLowerCase();
+      return nombre.includes(busqueda) || tipo.includes(busqueda);
+    });
+
+    // Llama a una función para mostrar los resultados
+    mostrarResultados(resultados);
+  }
+};
+
+// Agrega un evento al botón de búsqueda
+document.getElementById('searchButton').addEventListener('click', function () {
+  const busqueda = document.getElementById('searchBar').value.toLowerCase();
+  buscarPokemon(busqueda);
 });
 
-updatePokedex(originalPokemons);
+// Limpia el campo de búsqueda cuando se borra la búsqueda
+document.getElementById('searchBar').addEventListener('input', function () {
+  const busqueda = document.getElementById('searchBar').value.toLowerCase();
+  buscarPokemon(busqueda);
+  if (!busqueda) {
+    mostrarResultados(pokemonData);
+  }
+});
 
-function updatePokedex(filteredPokemons) {
-  contenedorPokemon.innerHTML = ''; // Limpiamos el contenedor
-  
-  filteredPokemons.forEach(pokemon => {
-    crearTarjetaPokemon(pokemon);
-  });
-}
+// Función para limpiar la pantalla y reiniciar
+const reiniciarPokedex = function () {
+  contenedorPokemon.innerHTML = ''; // Limpia el contenedor de Pokémon
+  document.getElementById('searchBar').value = ''; // Limpia el campo de búsqueda
+  mostrarResultados(pokemonData); // Muestra todos los Pokémon
+};
+
+// Agrega un evento al enlace "Pokedex" en la barra de navegación
+document.querySelector('.navbar-brand').addEventListener('click', reiniciarPokedex);
+
+
+// Obtén la referencia al botón de búsqueda y la barra de búsqueda
+const searchButton = document.getElementById('searchButton');
+const searchBar = document.getElementById('searchBar');
+
+// Manejar la búsqueda al hacer clic en el botón
+searchButton.addEventListener('click', () => {
+  const busqueda = searchBar.value.trim().toLowerCase();
+  buscarPokemon(busqueda);
+});
+
+// Manejar la búsqueda al presionar Enter en la barra de búsqueda
+searchBar.addEventListener('keyup', (event) => {
+  if (event.key === 'Enter') {
+    const busqueda = searchBar.value.trim().toLowerCase();
+    buscarPokemon(busqueda);
+  }
+});
+
+
 
 const mostrarModal = function (pokemon) {
   const modal = document.getElementById('exampleModal');
