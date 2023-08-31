@@ -9,10 +9,8 @@
 
 </head>
 <body>
-
-
   <div class="container-fluid">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg ">
       <a class="navbar-brand" href="#">
         <img id="logo" src="poke-removebg-preview.png" alt="Logo">
       </a>
@@ -32,30 +30,46 @@
     </nav>
   </div>
 
-<div id="contenedor-pokemon" class="container"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div id="contenedor-pokemon" class="row justify-content-center"></div>
+      </div>
+    </div>
+  </div>
+
+ <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        
+        <h5 class="modal-title" id="exampleModalLabel">Pokedex</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <!-- Utiliza las clases para centrar vertical y horizontalmente -->
-        <div class="d-flex justify-content-center align-items-center">
-          <div id="cardModal" class="card" style="width: 18rem;">
-            <img id="imgModal" src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 id="cardPokeModal" class="card-title">Card title</h5>
-              <p id="descriptionModal" class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-            <ul class="list-group list-group-flush">
-              <li id="tipo" class="list-group-item">An item</li>
-              <li id="peso" class="list-group-item">A second item</li>
-              <li id="talla" class="list-group-item">A third item</li>
-            </ul>
+        <div class="row">
+          <div class="col-md-4">
+            <div id="statsBars"></div>
+            <img id="imgModal" class="img-fluid" alt="Pokemon Image">
+          </div>
+          <div class="col-md-8">
+            <h2 id="cardPokeModal"></h2>
+            <p id="descriptionModal"></p>
+            <p id="tipo"></p>
+            <p id="peso"></p>
+            <p id="talla"></p>
+            <p id="experiencia"></p> <!-- Nuevo elemento para la experiencia -->
+
+            <lu>Estadísticas:</lu>
+            <ul id="statsList"></ul>
+            <lu>Movimientos:</lu>
+            <ul id="movesList"></ul>
           </div>
         </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>

@@ -8,30 +8,41 @@ const Pokemon = function (data) {
   this.stats = data.stats;
   this.id = data.id;
   this.description = data.description;
+this.moves = data.moves || []; // Asigna los movimientos o un arreglo vacío si no están disponibles
+this.base_experience = data.base_experience || 0; // Asigna la experiencia base o un valor predeterminado
+this.moves = data.moves; // Asigna los movimientos
+this.id = data.id; // Asigna el ID
 };
 
 const contenedorPokemon = document.getElementById('contenedor-pokemon');
 const pokemonData = [];
 
 const dibujarPokedex = (function () {
-  const url = 'https://pokeapi.co/api/v2/pokemon?limit=150';;
+  const url = 'https://pokeapi.co/api/v2/pokemon?limit=150';
   fetch(url)
     .then(response => response.json())
     .then(data => {
       const pokemons = data.results;
-      pokemons.forEach(pokemon => {
-        fetch(pokemon.url)
+      const fetchPromises = pokemons.map(pokemon => {
+        return fetch(pokemon.url)
           .then(response => response.json())
-          .then(data => {
-            const pokemon = new Pokemon(data);
-            pokemonData.push(pokemon);
-            crearTarjetaPokemon(pokemon);
-          })
+          .then(data => new Pokemon(data))
           .catch(error => {
             console.error('Error:', error);
           });
       });
-    })
+
+      Promise.all(fetchPromises)
+        .then(pokemonInstances => {
+          // Ordenar los Pokémon según su ID
+          pokemonInstances.sort((a, b) => a.id - b.id);
+
+          pokemonInstances.forEach(pokemon => {
+            pokemonData.push(pokemon);
+            crearTarjetaPokemon(pokemon);
+          });
+        });
+    });
 })
 
 const getColorType = function (type) {
@@ -62,7 +73,7 @@ const getColorType = function (type) {
 // Define una función para crear la tarjeta de Pokémon
 const crearTarjetaPokemon = function (pokemon) {
   const tarjeta = document.createElement('div');
-  tarjeta.classList.add('card', 'col-3', 'm-2', 'row', 'p-2', 'shadow');
+  tarjeta.classList.add('card', 'col-2', 'm-5', 'row', 'p-2', 'shadow');
 
   const nombre = document.createElement('h2');
   nombre.classList.add('card-title');
@@ -159,9 +170,7 @@ searchBar.addEventListener('keyup', (event) => {
     const busqueda = searchBar.value.trim().toLowerCase();
     buscarPokemon(busqueda);
   }
-});
-
-
+}); 
 
 const mostrarModal = function (pokemon) {
   const modal = document.getElementById('exampleModal');
@@ -172,19 +181,62 @@ const mostrarModal = function (pokemon) {
   const typeModal = document.getElementById('tipo');
   const heightModal = document.getElementById('peso');
   const weightModal = document.getElementById('talla');
+// 
+const statsList = document.getElementById('statsList');
+statsList.innerHTML = ''; // Limpia la lista de estadísticas antes de agregar elementos
 
-  modalTitle.textContent = ("Pokedex");
+pokemon.stats.forEach(stat => {
+  const statItem = document.createElement('li');
+  statItem.textContent = `${stat.stat.name}: ${stat.base_stat}`;
+  statsList.appendChild(statItem);
+});
+// Dentro de la función mostrarModal
+const movesList = document.getElementById('movesList');
+movesList.innerHTML = ''; // Limpia la lista de movimientos antes de agregar elementos
+
+pokemon.moves.slice(0, 5).forEach(move => { // Mostrar los primeros 5 movimientos
+  const moveItem = document.createElement('li');
+  moveItem.textContent = move.move.name;
+  movesList.appendChild(moveItem);
+});
+
+// funcion para mostrar las estadisticas
+const statsBars = document.getElementById('statsBars');
+statsBars.innerHTML = ''; // Limpia las barras de estadísticas antes de agregar elementos
+
+pokemon.stats.forEach(stat => {
+  const statName = stat.stat.name;
+  const statValue = stat.base_stat;
+
+  const statContainer = document.createElement('div');
+  statContainer.classList.add('stat-container');
+
+  const statLabel = document.createElement('div');
+  statLabel.textContent = statName;
+  statLabel.classList.add('stat-label');
+  statContainer.appendChild(statLabel);
+
+  const statBar = document.createElement('div');
+  statBar.classList.add('stat-bar');
+  statBar.style.width = `${(statValue / 150) * 100}%`; // Ajusta el ancho de la barra según el valor de la estadística
+  statContainer.appendChild(statBar);
+
+  statsBars.appendChild(statContainer);
+});
+
+
+// Dentro de la función mostrarModal
+const experienciaModal = document.getElementById('experiencia');
+experienciaModal.textContent = "Experiencia Base: " + pokemon.base_experience;
+  modalTitle.textContent = "Pokedex";
   imgModal.src = pokemon.image;
   imgModal.style.backgroundColor = getColorType(pokemon.type);
   pokeModalName.textContent = pokemon.name;
   descriptionModal.textContent = pokemon.description;
-  typeModal.textContent = ('Tipo: ' + pokemon.type);
-  heightModal.textContent = ('Altura: ' + pokemon.height)
-  weightModal.textContent = ('Peso: ' + pokemon.weight)
+  typeModal.textContent = "Tipo: " + pokemon.type;
+  heightModal.textContent = "Altura: " + (pokemon.height / 10) + " m"; // Convertir la altura a metros
+  weightModal.textContent = "Peso: " + (pokemon.weight / 10) + " kg"; // Convertir el peso a kilogramos
 
   $('#exampleModal').modal('show');
 };
-
 dibujarPokedex();
-
-
