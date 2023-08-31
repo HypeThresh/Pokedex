@@ -115,14 +115,25 @@ body {
   }
 
   .modal-header {
-    background-color: #f8d030;
+    background-color: #ee3a3a;
     color: white;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
   }
+  
+  .imgModal {
+    width: 100%;
+    height: auto;
+  }
 
   .modal-body {
-    background-color: #f5f5f5;
+    border-bottom-left-radius: 2%;
+    border-bottom-right-radius: 2%;
+    background-color: #ee3a3a;
+  }
+
+  .modal-dialog {
+    max-width: 800px;
   }
 
   /* Agrega margen inferior a las estadísticas y movimientos */
@@ -137,7 +148,7 @@ body {
   
   /* Estilos para personalizar el modal */
   .modal-content {
-    background-color: #f8f9fa; /* Cambia este color según tus preferencias */
+    background-color: #ee3a3a; /* Cambia este color según tus preferencias */
     color: #000;
   }
   

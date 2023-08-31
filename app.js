@@ -6,12 +6,11 @@ const Pokemon = function (data) {
   this.height = data.height;
   this.weight = data.weight;
   this.stats = data.stats;
-  this.id = data.id;
   this.description = data.description;
-this.moves = data.moves || []; // Asigna los movimientos o un arreglo vacío si no están disponibles
-this.base_experience = data.base_experience || 0; // Asigna la experiencia base o un valor predeterminado
-this.moves = data.moves; // Asigna los movimientos
-this.id = data.id; // Asigna el ID
+  this.moves = data.moves || []; // Asigna los movimientos o un arreglo vacío si no están disponibles
+  this.base_experience = data.base_experience || 0; // Asigna la experiencia base o un valor predeterminado
+  this.moves = data.moves; // Asigna los movimientos
+  this.id = data.id; // Asigna el ID
 };
 
 const contenedorPokemon = document.getElementById('contenedor-pokemon');
@@ -40,7 +39,7 @@ const dibujarPokedex = (function () {
           pokemonInstances.forEach(pokemon => {
             pokemonData.push(pokemon);
             crearTarjetaPokemon(pokemon);
-          });
+1          });
         });
     });
 })
@@ -205,8 +204,13 @@ pokemon.moves.slice(0, 5).forEach(move => { // Mostrar los primeros 5 movimiento
 const statsBars = document.getElementById('statsBars');
 statsBars.innerHTML = ''; // Limpia las barras de estadísticas antes de agregar elementos
 
-pokemon.stats.forEach(stat => {
-  const statName = stat.stat.name;
+const statsCard = document.createElement('div');
+statsCard.classList.add('card', 'p-3', 'shadow');
+
+const statLabels = ["hp", "atck", "def", "sat", "sdef", "spd"];
+
+pokemon.stats.forEach((stat, index) => {
+  const statName = statLabels[index]; // Usar el nombre correspondiente del array statLabels
   const statValue = stat.base_stat;
 
   const statContainer = document.createElement('div');
@@ -220,13 +224,16 @@ pokemon.stats.forEach(stat => {
   const statBar = document.createElement('div');
   statBar.classList.add('stat-bar');
   statBar.style.width = `${(statValue / 150) * 100}%`; // Ajusta el ancho de la barra según el valor de la estadística
-  statContainer.appendChild(statBar);
 
-  statsBars.appendChild(statContainer);
+  statContainer.appendChild(statBar);
+  statsCard.appendChild(statContainer); // Agregar el contenedor de estadísticas al card
 });
+
+statsBars.appendChild(statsCard); // Agregar el card de estadísticas a statsBars
+
 // Dentro de la función mostrarModal
 const experienciaModal = document.getElementById('experiencia');
-experienciaModal.textContent = "Experiencia Base: " + pokemon.base_experience;
+  experienciaModal.textContent = "Experiencia Base: " + pokemon.base_experience;
   modalTitle.textContent = "Pokedex";
   imgModal.src = pokemon.image;
   imgModal.style.backgroundColor = getColorType(pokemon.type);
@@ -238,4 +245,5 @@ experienciaModal.textContent = "Experiencia Base: " + pokemon.base_experience;
 
   $('#exampleModal').modal('show');
 };
+
 dibujarPokedex();
