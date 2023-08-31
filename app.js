@@ -181,6 +181,7 @@ const mostrarModal = function (pokemon) {
   const typeModal = document.getElementById('tipo');
   const heightModal = document.getElementById('peso');
   const weightModal = document.getElementById('talla');
+  
 // 
 const statsList = document.getElementById('statsList');
 statsList.innerHTML = ''; // Limpia la lista de estadísticas antes de agregar elementos
@@ -223,8 +224,6 @@ pokemon.stats.forEach(stat => {
 
   statsBars.appendChild(statContainer);
 });
-
-
 // Dentro de la función mostrarModal
 const experienciaModal = document.getElementById('experiencia');
 experienciaModal.textContent = "Experiencia Base: " + pokemon.base_experience;

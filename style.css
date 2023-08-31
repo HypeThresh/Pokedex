@@ -151,15 +151,48 @@ body {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+  gap: 25px;
 }
 
 .stat-label {
-  width: 80px;
-  padding-right: 10px;
+  width: 50px;
+  padding-right: 20px;
 }
 
 .stat-bar {
-  height: 20px;
+  height: 15px;
   background-color: #4caf50; /* Color de fondo de la barra */
   transition: width 0.5s; /* Animación de transición al cambiar el ancho */
+}
+
+/* CSS personalizado para hacer más pequeñas las cards */
+.card {
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+  font-size: 1rem; /* Reduzca el tamaño de la fuente del título */
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.list-group-item {
+  padding: 5px;
+  border: none;
+}
+/* Estilo de las tarjetas */
+.custom-card {
+  background-color: #F5F5F5; /* Color de fondo de las tarjetas */
+  border: 2px solid #333; /* Borde de las tarjetas */
+  border-radius: 10px; /* Bordes redondeados */
+}
+
+/* Estilo de la fuente */
+.custom-font {
+  color: #FF6600; /* Color de la fuente */
+  font-weight: bold; /* Texto en negrita */
 }

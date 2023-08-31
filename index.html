@@ -30,52 +30,79 @@
     </nav>
   </div>
 
-  <div class="container">
+  <div class="container">   
     <div class="row">
       <div class="col-12">
         <div id="contenedor-pokemon" class="row justify-content-center"></div>
       </div>
     </div>
   </div>
-
- <!-- Modal -->
+<!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        
         <h5 class="modal-title" id="exampleModalLabel">Pokedex</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="row">
-          <div class="col-md-4">
+          <!-- Tarjeta de Imagen del Pokémon -->
+          <div class="col-md-3 text-center">
+            <div class="card mb-2 custom-card">
+              <div class="card-body">
+                <div class="pokemon-image-container">
+                  <img id="imgModal" class="img-fluid mx-auto d-block rounded" alt="Pokemon Image">
+                </div>
+              </div>
+            </div>
             <div id="statsBars"></div>
-            <img id="imgModal" class="img-fluid" alt="Pokemon Image">
           </div>
-          <div class="col-md-8">
-            <h2 id="cardPokeModal"></h2>
+          <div class="col-md-9">
+            
+            <!-- Contenedor centrado para la tarjeta de Información del Pokémon -->
+<div class="col-md-12 text-center">
+  <div class="card mb-2 custom-card mx-auto"> <!-- Aplica la clase mx-auto para centrar -->
+    <div class="card-body">
+      <h2 id="cardPokeModal"></h2>
             <p id="descriptionModal"></p>
             <p id="tipo"></p>
             <p id="peso"></p>
             <p id="talla"></p>
-            <p id="experiencia"></p> <!-- Nuevo elemento para la experiencia -->
-
-            <lu>Estadísticas:</lu>
-            <ul id="statsList"></ul>
-            <lu>Movimientos:</lu>
-            <ul id="movesList"></ul>
+            <p id="experiencia"></p>
+            <p id="pokemonId"></p>
+    </div>
+  </div>
+</div>
+            <!-- Tarjetas de Estadísticas y Movimientos -->
+            <div class="row">
+              <div class="col-md-6">
+                <div class="card mb-2">
+                  <div class="card-body">
+                    <h5 class="card-title">Estadísticas:</h5>
+                    <p id="statsList" class="list-group list-group-flush"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card mb-2">
+                  <div class="card-body">
+                    <h5 class="card-title">Movimientos:</h5>
+                    <p id="movesList" class="list-group list-group-flush"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
 </div>
 
-      
     <script src="app.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
